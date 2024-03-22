@@ -52,16 +52,16 @@ const UserMenu: React.FC<UserMenuProps> = ({
                     {currentUser? (
                             <>
                             <MenuItem onClick={() =>router.push("/rents")}
-                            label="Xe này thuê"
+                            label="Xe thuê"
                              />
                              <MenuItem onClick={() =>router.push("/favorites")}
-                            label="Yeu thich"
+                            label="Yêu thích"
                              />
                              <MenuItem onClick={() =>router.push('/reservations')}
-                            label="Nhung xe da dat"
+                            label="Xe được đặt"
                              />
                              <MenuItem onClick={() =>router.push('/carmanagements')}
-                            label="cac xe cua toi"
+                            label="Xe của tôi"
                              />
                              <MenuItem 
                              onClick={rentModal.onOpen}
