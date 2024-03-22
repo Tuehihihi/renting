@@ -52,7 +52,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                     {currentUser? (
                             <>
                             <MenuItem onClick={() =>router.push("/rents")}
-                            label="Xe thuê"
+                            label="Xe này thuê"
                              />
                              <MenuItem onClick={() =>router.push("/favorites")}
                             label="Yeu thich"
