@@ -6,6 +6,7 @@ interface ButtonProps {
     label: string;
     onClick: (e: React.MouseEvent<HTMLButtonElement>) =>void;
     disable?: boolean;
+    updated?: boolean;
     outline?: boolean;
     small?: boolean;
     icon?: IconType
@@ -21,6 +22,7 @@ const Button: React.FC<ButtonProps> = ({
     return(
         <button onClick={onClick}
         disabled ={disable}
+        
         className={`relative disabled:opacity-70 disabled:cursor-not-allowed rounded-lg hover:opacity-80 transition w-full 
         ${outline ? 'bg-white': 'bg-green-500'}
         ${outline ? 'border-black': 'border-green-500'}

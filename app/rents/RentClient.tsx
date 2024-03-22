@@ -18,9 +18,8 @@ const RentsClient: React.FC<RentsClientProps> = ({
     currentUser
 }) => {
     const router = useRouter();
-    const [deletingId, setDeletingId] = useState('');
-
- //   const [updatingId, setUpdatingId] = useState('');
+    const [deletingId, setDeletingId] = useState('');  
+    const [updatingId, setUpdatingId] = useState('');
     const onCancel = useCallback((id: string) => {
         setDeletingId(id);
 
@@ -35,6 +34,20 @@ const RentsClient: React.FC<RentsClientProps> = ({
         .finally(() => {
             setDeletingId('');
         });
+    },[router])
+    const onUpdate = useCallback((id: string) => {
+        setUpdatingId(id)
+        axios.put(`/api/reservations/${id}`)
+        .then(() => {
+            toast.success('Sửa thành công');
+            router.refresh();
+        })
+        .catch((error) => {
+            toast.error(error?.response?.data?.error);
+        })
+        .finally(() => {
+            setUpdatingId('');
+        })
     },[router])
     return (
         <Container>
@@ -53,6 +66,10 @@ const RentsClient: React.FC<RentsClientProps> = ({
                         disabled= {deletingId === reservation.id}
                         actionLabel="Hủy"
                         currentUser={currentUser}
+                        secondActionId={reservation.id}
+                        updated= {updatingId === reservation.id}
+                        onSecondaryAction={onUpdate}
+                        secondActionLabel="Sửa"
                     />
                 ))}
             </div>

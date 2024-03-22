@@ -13,6 +13,7 @@ interface CarCardProps {
     data: SafeCar;
     reservation?: SafeReservation;
     onAction?: (id:string) => void;
+    updated?: boolean;
     disabled?: boolean;
     actionLabel?: string;
     actionId?: string;
@@ -27,6 +28,7 @@ const CarCard: React.FC<CarCardProps>= ({
     reservation,
     onAction,
     disabled,
+    updated,
     actionLabel,
     secondActionLabel,
     onSecondaryAction,
@@ -48,23 +50,17 @@ const CarCard: React.FC<CarCardProps>= ({
         }, [onAction, actionId, disabled]
     )
 
-    // const handleUpdate = useCallback(
-    //     (e: React.MouseEvent<HTMLButtonElement>) => {
-    //         e.stopPropagation();
-    
-    //         if (disabled) {
-    //             return;
-    //         }
-    
-    //         const updatedSecondActionId =
-    //             typeof secondActionId === 'function'
-    //                 ? secondActionId(data, reservation)
-    //                 : secondActionId;
-    
-    //         onSecondaryAction?.(secondActionId);
-    //     },
-       // [onSecondaryAction, secondActionId, data, reservation, disabled]
-    //);
+    const handleUpdate = useCallback(
+        (e: React.MouseEvent<HTMLButtonElement>) =>{
+            e.stopPropagation();
+
+            if(updated) {
+                return;
+            }
+
+            onSecondaryAction?.(secondActionId);
+        }, [onSecondaryAction, secondActionId, updated]
+    )
     const price = useMemo(() => {
         if(reservation) {
             return reservation.totalPrice;
@@ -125,25 +121,28 @@ const CarCard: React.FC<CarCardProps>= ({
                             <div className="font-light">/ ngay</div>
                         )}
                     </div>
-                    
-                    {/* {onSecondaryAction && secondActionLabel && (
-                        <Button
-                        disable = {disabled}
-                        small
-                        label={secondActionLabel}
-                        onClick={handleUpdate}
-                        />
-                    )} */}
                 </div> 
+                <div className="flex flex-row gap-3">
                 {onAction && actionLabel && (
                         <Button
                         disable = {disabled}
                         small
+                        outline
                         label={actionLabel}
                         onClick={handleCancel}
                         />
                         
                     )}
+                {onSecondaryAction && secondActionLabel && (
+                        <Button
+                        disable = {disabled}
+                        small
+                        
+                        label={secondActionLabel}
+                        onClick={handleUpdate}
+                        />
+                    )}
+                </div>
             </div>
          </div>
     )
