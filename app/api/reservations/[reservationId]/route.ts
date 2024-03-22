@@ -33,3 +33,31 @@ export async function DELETE (
     });
     return NextResponse.json(reservation);
 }
+
+export async function PUT (
+    request: Request,
+    {params} : {params: IParams}
+){
+    const currentUser = await getCurrentUser();
+
+    if(!currentUser) {
+        return NextResponse.error();
+    }
+
+    const {reservationId} = params;
+    if(!reservationId || typeof reservationId !== 'string'){
+        throw new Error('Id không tồn tại');
+    }
+
+    
+    const reservation = await prisma.reservation.update({
+        where: {
+            id: reservationId,
+        },
+        data: {
+            takeLocation: "Ha Noi o de"
+        }
+    })
+    
+    return NextResponse.json(reservation);
+}

@@ -20,6 +20,7 @@ const RentsClient: React.FC<RentsClientProps> = ({
     const router = useRouter();
     const [deletingId, setDeletingId] = useState('');  
     const [updatingId, setUpdatingId] = useState('');
+
     const onCancel = useCallback((id: string) => {
         setDeletingId(id);
 

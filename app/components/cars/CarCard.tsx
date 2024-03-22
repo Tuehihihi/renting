@@ -57,7 +57,7 @@ const CarCard: React.FC<CarCardProps>= ({
             if(updated) {
                 return;
             }
-
+            
             onSecondaryAction?.(secondActionId);
         }, [onSecondaryAction, secondActionId, updated]
     )
