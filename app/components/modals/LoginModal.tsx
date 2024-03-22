@@ -97,12 +97,12 @@ const LoginModal = () => {
       />
       <div className='text-neutral-500 text-center mt-4 font-light'>
         <div className='justify-center flex flex-row items-center gap-2'>
-          <div>
-            Đã có tài khoản rồi?
+          <div> 
+            Đây là lần đầu bạn sử dụng?
           </div>
-          <div onClick={registerModal.onClose}
+          <div onClick={toggle}
           className='text-neutral-800 cursor-pointer hover:underline' > 
-            Đăng nhập
+            Đăng kí ngay
           </div>
         </div>
       </div>

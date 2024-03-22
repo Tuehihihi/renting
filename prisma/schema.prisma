@@ -73,6 +73,7 @@ model Reservation {
   endDate DateTime
   totalPrice Int
   createdAt DateTime @default(now())
+  takeLocation String
 
   user User @relation( fields: [userId], references: [id], onDelete: Cascade)
   car Car @relation( fields: [carId], references: [id] , onDelete: Cascade)

@@ -6,7 +6,7 @@ import { TbCurrencyDong } from "react-icons/tb";
 interface InputProps {
     id: string;
     label: string;
-    type?: string;
+    type?: string; 
     disabled?: boolean;
     formatPrice?: boolean;
     required?: boolean;
