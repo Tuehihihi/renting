@@ -5,7 +5,7 @@ import EmptyState from "./components/EmptyState";
 import getCars, { ICarsParams } from "./actions/getCars";
 import CarCard from "./components/cars/CarCard";
 import getCurrentUser from "./actions/getCurrentUser";
-
+import Chatbot from "./components/Chatbot";
 interface HomeProps {
   searchParams: ICarsParams
 }
@@ -37,6 +37,7 @@ const Home = async ( {searchParams}: HomeProps) => {
           
         </div>
       </Container>
+      <Chatbot />
     </ClientOnly>
   );
 }

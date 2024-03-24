@@ -8,7 +8,7 @@ import LoginModal from "./components/modals/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
 import RentModal from "./components/modals/RentModal";
 import SearchModal from "./components/modals/SearchModal";
-
+import Chatbot from "./components/Chatbot";
 export const metadata = {
   title: "Gocar",
   description: "NextApp",
@@ -36,6 +36,7 @@ export default async function RootLayout({
           <RegisterModal />
           <LoginModal />
           <Navbar currentUser = {currentUser} />
+          <Chatbot />
         </ClientOnly>
         <div className="pb-20 pt-28">
           {children}
