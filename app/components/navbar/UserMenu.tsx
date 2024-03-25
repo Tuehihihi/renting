@@ -49,39 +49,35 @@ const UserMenu: React.FC<UserMenuProps> = ({
             {isOpen && (
                 <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm">
                     <div className="flex flex-col cursor-pointer">
-                    {currentUser? (
-                            <>
-                            <MenuItem onClick={() =>router.push("/rents")}
-                            label="Xe thuê"
-                             />
-                             <MenuItem onClick={() =>router.push("/favorites")}
-                            label="Yêu thích"
-                             />
-                             <MenuItem onClick={() =>router.push('/reservations')}
-                            label="Xe được đặt"
-                             />
-                             <MenuItem onClick={() =>router.push('/carmanagements')}
-                            label="Xe của tôi"
-                             />
-                             <MenuItem 
-                             onClick={rentModal.onOpen}
-                            label="Gocar 4everywhere"
-                             />
-                             <hr />
-                             <MenuItem onClick={() =>signOut()}
-                            label="Đăng xuất"
-                             />
-                            </>
-                        ): (
-                            <>
-                            <MenuItem onClick={loginModal.onOpen}
-                            label="Đăng nhập"
-                             />
-                             <MenuItem onClick={registerModal.onOpen}
-                            label="Đăng kí"
-                             />
-                            </>
-                        )}
+                    {currentUser ? (
+                    <>
+                        {currentUser.email === 'manager@example.com' ? (
+                    <>  
+                        <div className="px-4 py-3 font-semibold cursor-default">Xin chào {currentUser.name} </div>
+                        <MenuItem onClick={() => router.push('/reservations')} label="Xe được đặt" />
+                        <MenuItem onClick={() => router.push('/carmanagements')} label="Xe của tôi" />
+                        <MenuItem onClick={rentModal.onOpen} label="Gocar 4everywhere" />
+                        <hr />
+                        <MenuItem onClick={() => signOut()} label="Đăng xuất" />
+                    </>
+                ) : (
+                    <>
+                        <div className="px-4 py-3 font-semibold cursor-default">Xin chào {currentUser.name} </div>
+                        <MenuItem onClick={() => router.push('/rents')} label="Xe thuê" />
+                        <MenuItem onClick={() => router.push('/favorites')} label="Yêu thích" />
+                        <MenuItem onClick={rentModal.onOpen} label="Gocar 4everywhere" />
+                        <hr />
+                        <MenuItem onClick={() => signOut()} label="Đăng xuất" />
+                    </>
+                )}
+        
+                    </>
+                ) : (
+                    <>
+                <MenuItem onClick={loginModal.onOpen} label="Đăng nhập" />
+                <MenuItem onClick={registerModal.onOpen} label="Đăng kí" />
+                </>
+                )}
                     </div>
                 </div>
             )}
