@@ -51,12 +51,13 @@ const UserMenu: React.FC<UserMenuProps> = ({
                     <div className="flex flex-col cursor-pointer">
                     {currentUser ? (
                     <>
-                        {currentUser.email === 'manager@example.com' ? (
+                        {currentUser.email === 'manager@gmail.com' ? (
                     <>  
-                        <div className="px-4 py-3 font-semibold cursor-default">Xin chào {currentUser.name} </div>
+                        <div className="px-4 py-3 font-semibold cursor-default"> {currentUser.name} </div>
                         <MenuItem onClick={() => router.push('/reservations')} label="Xe được đặt" />
                         <MenuItem onClick={() => router.push('/carmanagements')} label="Xe của tôi" />
                         <MenuItem onClick={() => router.push('/comments')} label="Đánh giá" />
+                        <MenuItem onClick={() => router.push('/usermanage')} label="Quản lý tài khoản" />
                         <MenuItem onClick={rentModal.onOpen} label="Gocar 4everywhere" />
                         <hr />
                         <MenuItem onClick={() => signOut()} label="Đăng xuất" />
@@ -67,7 +68,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                         <MenuItem onClick={() => router.push('/rents')} label="Xe thuê" />
                         <MenuItem onClick={() => router.push('/favorites')} label="Yêu thích" />
                         <MenuItem onClick={() => router.push('/comments')} label="Đánh giá" />
-                        <MenuItem onClick={rentModal.onOpen} label="Gocar 4everywhere" />
+                        <MenuItem onClick={() => {}} label="Gocar 4everywhere" />
                         <hr />
                         <MenuItem onClick={() => signOut()} label="Đăng xuất" />
                     </>
