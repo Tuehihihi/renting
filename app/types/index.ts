@@ -1,10 +1,17 @@
-import { Car,Reservation,User } from "@prisma/client";
+import { Car,Reservation,User,Comment } from "@prisma/client";
 
 export type SafeCar = Omit<
     Car,
     "createdAt"
 > & {
     createdAt: string;
+}
+export type SafeComment = Omit<
+    Comment,
+    "createdAt" | "updatedAt"
+>  & {
+    createdAt: string;
+    updatedAt: string;
 }
 
 export type SafeReservation = Omit<
