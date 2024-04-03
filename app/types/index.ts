@@ -12,16 +12,19 @@ export type SafeComment = Omit<
 >  & {
     createdAt: string;
     updatedAt: string;
+    user: SafeUser;
 }
 
 export type SafeReservation = Omit<
     Reservation,
-    "createdAt" | "startDate" | "endDate" | "car"
+    "createdAt" | "startDate" | "endDate" | "car" | "user"
 > & {
     createdAt: string;
     startDate: string;
     endDate: string;
     car: SafeCar;
+    user: SafeUser;
+
 }
 
 export type SafeUser = Omit<

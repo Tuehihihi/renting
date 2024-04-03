@@ -9,7 +9,7 @@ import { format } from 'date-fns';
 import Image from "next/image";
 import HeartButton from "../HeartButton";
 import Button from "../Button";
-interface CarCardProps {
+interface CarPaymentProps {
     data: SafeCar;
     reservation?: SafeReservation;
     onAction?: (id:string) => void;
@@ -21,7 +21,7 @@ interface CarCardProps {
     currentUser?: SafeUser | null;
 }
 
-const CarCard: React.FC<CarCardProps>= ({
+const CarPayment: React.FC<CarPaymentProps>= ({
     data,
     reservation,
     onAction,
@@ -68,7 +68,7 @@ const CarCard: React.FC<CarCardProps>= ({
     },[reservation]);
     return(
      
-        <div onClick={() => router.push(`/cars/${data.id}`)}
+        <div onClick={() => {}}
          className="col-span-1 cursor-pointer group">
             <div className="flex flex-col gap-1 w-full">
                 <div className="aspect-square w-full relative overflow-hidden rounded-xl">
@@ -130,4 +130,4 @@ const CarCard: React.FC<CarCardProps>= ({
          </div>
     )
 }
-export default CarCard;
+export default CarPayment;

@@ -2,12 +2,12 @@
 import { useRouter } from "next/navigation";
 import { SafeComment, SafeUser } from "@/app/types";
 import { useCallback, useState } from "react";
-import Container from "../Container";
+
 import Button from "../Button";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import axios from "axios";
 import toast from "react-hot-toast";
-import Avatar from "../Avatar";
+
 interface CommentInputProps{
     comments: SafeComment,
     currentUser: SafeUser | null, 

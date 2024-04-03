@@ -3,7 +3,7 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from "@/app/libs/prismadb";
 
 interface IParams {
-    reservationId?: string;
+    paymentId?: string;
 };
 
 export async function DELETE (
@@ -16,18 +16,14 @@ export async function DELETE (
         return NextResponse.error();
     }
 
-    const {reservationId} = params;
-    if(!reservationId || typeof reservationId !== 'string'){
+    const {paymentId} = params;
+    if(!paymentId || typeof paymentId !== 'string'){
         throw new Error('Id không tồn tại');
     }
 
     const reservation = await prisma.reservation.deleteMany({
         where: {
-            id: reservationId,
-            OR: [
-                {userId:currentUser.id},
-                {car: {userId: currentUser.id}}
-            ]
+            id: paymentId,
         }
         
     });

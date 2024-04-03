@@ -64,6 +64,7 @@ const UserClient: React.FC<UserClientProps> = ({
                     {data.phoneNumber}
                 </div>
                 <Button 
+                    outline
                     small
                     label="Xóa người dùng"
                     onClick={() => onCancel(data.id)}

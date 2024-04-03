@@ -1,39 +1,27 @@
 import prisma from "@/app/libs/prismadb"
 
-interface IParams {
-    commentId?: string;
-    userId?: string;
-    authorId?: string;
-}
-
-export default async function getComments(
-    params: IParams
-) {
+export default async function getComments() {
     try{
-    const { commentId,  userId, authorId} = params;
-
-    const query: any = {};
-
-    if(commentId) {
-        query.commentId = commentId; 
-    }
-
-    if(userId){
-        query.userId =userId
-    }
-
+    
     const comments = await prisma.comment.findMany({
+        include: {
+            user: true,
+        },
         orderBy: {
             createdAt: 'desc'
-        }
+        } 
     });
-
+ 
     const safeComment = comments.map(
         (comment) => ({
             ...comment,
             createdAt: comment.createdAt.toISOString(),
             updatedAt: comment.updatedAt.toISOString(),
-            
+            user : {
+                ...comment.user,
+                createdAt: comment.user.createdAt.toISOString(),
+                updatedAt: comment.user.updatedAt.toISOString(),
+            }
         })
     );
 

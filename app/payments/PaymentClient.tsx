@@ -5,16 +5,16 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 import { SafeReservation, SafeUser } from "../types";
-import CarCard from "../components/cars/CarCard";
 import Heading from "../components/Heading";
 import Container from "../components/Container";
 import { useCallback, useState } from "react";
+import CarPayment from "../components/cars/CarPayment";
 
-interface ReservationClientProps {
+interface PaymentClientProps {
     reservations: SafeReservation[];
     currentUser?: SafeUser | null;
 }
-const ReservationsClient: React.FC<ReservationClientProps>= ({
+const PaymentClient: React.FC<PaymentClientProps>= ({
     reservations,
     currentUser
 }) => {
@@ -23,9 +23,9 @@ const ReservationsClient: React.FC<ReservationClientProps>= ({
     const onCancel = useCallback((id: string) => {
         setDeletingId(id);
 
-        axios.delete(`/api/reservations/${id}`)
+        axios.delete(`/api/payments/${id}`)
         .then(() =>{
-            toast.success("Hủy thành công");
+            toast.success("Thanh toán thành công");
             router.refresh
         })
         .catch(() => {
@@ -38,12 +38,12 @@ const ReservationsClient: React.FC<ReservationClientProps>= ({
     return (
      <Container>
         <Heading 
-            title="Xe đã đặt"
-            subtitle="Các xe đã đặt trong hệ thống"
+            title="Các xe giao"
+            subtitle="Hãy giao xe đến khách hàng!!!"
         />
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
             {reservations.map((reservation) => (
-                <CarCard
+                <CarPayment
                 key={reservation.id}
                 data={reservation.car}
                 reservation={reservation}
@@ -51,7 +51,7 @@ const ReservationsClient: React.FC<ReservationClientProps>= ({
                 actionId={reservation.id}
                 onAction={onCancel}
                 disabled={deletingId === reservation.id}
-                actionLabel="Hủy xe khách"
+                actionLabel="Xác nhận thanh toán"
                 currentUser={currentUser}
                 />
             ))}
@@ -60,4 +60,4 @@ const ReservationsClient: React.FC<ReservationClientProps>= ({
      </Container>
     )
 }
-export default ReservationsClient;
+export default PaymentClient;
